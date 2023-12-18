@@ -1,19 +1,46 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
+	exibeIntroducao()
+	exibeMenu()
+	comando := leComando()
+
+	switch comando {
+	case 1:
+		fmt.Println("Monitorando... ")
+	case 2:
+		fmt.Println("Exibindo logs...")
+	case 0:
+		fmt.Println("Saindo do programa")
+		os.Exit(0)
+	default:
+		fmt.Println("Não conheço esse comando")
+		os.Exit(-1)
+	}
+}
+
+func exibeIntroducao() {
 	nome := "Lara"
 	versao := 1.1
-	fmt.Println("ola senhora,", nome)
-	fmt.Println("Este progama esta na versão", versao)
+	fmt.Println("Olá, sr(a).", nome)
+	fmt.Println("Este programa está na versão", versao)
+}
 
+func exibeMenu() {
 	fmt.Println("1- Iniciar Monitoramento")
-	fmt.Println("2- Exibir logs")
-	fmt.Println("0 - Sair do programa")
+	fmt.Println("2- Exibir Logs")
+	fmt.Println("0- Sair do Programa")
+}
 
-	var comando int
-	fmt.Scan(&comando)
+func leComando() int {
+	var comandoLido int
+	fmt.Scan(&comandoLido)
+	fmt.Println("O valor da variável comando é:", comandoLido)
 
-	fmt.Println("O comando escolhido foi", comando)
+	return comandoLido
 }
